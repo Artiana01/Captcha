@@ -1,7 +1,55 @@
-
 <head>
     <script type="text/javascript" src="./config.js" defer></script>
     <script type="text/javascript" src="https://2b17d9cec338.eu-west-3.captcha-sdk.awswaf.com/2b17d9cec338/jsapi.js" defer></script>
+    <style>
+        /* Style général */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Style du conteneur CAPTCHA */
+        #my-captcha-container {
+            width: 300px;
+            height: 100px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style du bouton */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #004080;
+        }
+    </style>
 </head>
 <script type="text/javascript">
     function showMyCaptcha() {
@@ -16,20 +64,19 @@
     
     function captchaExampleSuccessFunction(wafToken) {
         // Use WAF token to access protected resources
-        AwsWafIntegration.fetch("...WAF-protected URL...", {
-            method: "POST"
-        });
+        console.log("Captcha success! Token:", wafToken);
     }
     
     function captchaExampleErrorFunction(error) {
-        /* Do something with the error */
+        console.error("Captcha error:", error);
     }
 </script>
 
 <body>
     <div id="my-captcha-container">
+        <!-- CAPTCHA will be rendered here -->
     </div>
-    <button onclick={showMyCaptcha()}>
-        view captcha
+    <button onclick="showMyCaptcha()">
+        View Captcha
     </button>
 </body>
